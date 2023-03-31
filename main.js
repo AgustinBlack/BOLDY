@@ -39,12 +39,9 @@ let marcaElegida = prompt("Ingrese la marca que busca (Adidas, Nike, Puma o New 
 const marcaFiltrada = zapatillas.filter((zapatilla) => zapatilla.marca === marcaElegida);
 console.log(marcaFiltrada)
 
-// FUNCION QUE SUMA EL RECIO DE LAS ZAPATILLAS QUE ELEGIS
+// FUNCION QUE SUMA EL PRECIO DE LAS ZAPATILLAS QUE ELEGIS
 
 let primerPrecio = parseInt(prompt("Ingrese el valor de las primeras zapatillas"))
 let segundoPrecio =parseInt(prompt("Ingrese el valor de las segundas zapatillas:"))
-function sumar(){
-    let sumaPrecios = primerPrecio + segundoPrecio
-    console.log(sumaPrecios)
-}
+alert(primerPrecio + segundoPrecio)
 
