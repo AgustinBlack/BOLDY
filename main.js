@@ -43,6 +43,6 @@ console.log(marcaFiltrada)
 
 let primerPrecio = parseInt(prompt("Ingrese el valor de las primeras zapatillas"))
 let segundoPrecio =parseInt(prompt("Ingrese el valor de las segundas zapatillas:"))
-alert(primerPrecio + segundoPrecio)
+console.log("El valor de su compra es de" , primerPrecio + segundoPrecio)
 
 
