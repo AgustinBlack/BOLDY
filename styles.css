@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+/*LISTA DE NAVEGACION*/
+
+.nav__inicial{
+    list-style: none;
+    flex-direction: row;
+}
+.nav__inicial li{
+    padding-top: 10px;
+}
+.nav__inicial li a{
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: unset;
+}
+.nav__inicial li :hover{
+    transition: 0.5s;
+    color: black;
+    background-color: white;
+}
+
+/* IMAGEN DEL INICIO */
+
+.imagen__centro{
+    padding-left: 250px;
+    padding-top: 20px;
+}
+
+/* BUSCADOR */
+
+#buscador{
+    border-radius: 5.5px;
+}
