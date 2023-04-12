@@ -34,3 +34,25 @@
 #buscador{
     border-radius: 5.5px;
 }
+
+/* CARDS DE ZAPATILLAS */
+
+#contenedor__cars {  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "\.zapatillas__cards . . ."
+      ". . . ."
+      ". . . ."
+      ". . . .";
+  }
+  
+  .\.zapatillas__cards { grid-area: \.zapatillas__cards; }
+  
+
+button{
+    border-radius: 5px;
+}
