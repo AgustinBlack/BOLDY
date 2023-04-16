@@ -47,35 +47,6 @@ function filtrar(){
 
 //CARDS
 
-// function mostrarProductos(productos){
-//     const contenedorCards = document.querySelector("#contenedor__cards");
-//     contenedorCards.innerHTML = "";
-//     productos .forEach(p => {
-//         const card = document.createElement("div");
-//         card.classList.add('card', 'col-xl-3', 'col-md-6', 'col-sm-12')
-//         card.innerHTML = `
-//                             <div class="card">
-//                                 <img src="${p.image}" class="card-img-top" alt="...">
-//                                 <div class="card-body">
-//                                    <h5 class="card-title">${p.modelo}</h5>
-//                                     <p class="card-text">${p.marca}</p>
-//                                 </div>
-//                                 <ul class="list-group list-group-flush">
-//                                     <li class="list-group-item">$${p.precio}</li>
-//                                     <li class="list-group-item">Cantidad: ${p.stock}</li>
-//                                 </ul>
-//                                 <div class="card-body">
-//                                     <button class="boton__card" id="boton${p.id}">Agregar al Carrito</button>
-//                                 </div>
-//                             </div>`
-//         contenedorCards.appendChild(card);
-//     });
-
-//     let boton = document.getElementById(id)
-//     boton.addEventListener("click", agregarProductoAlCarrito)
-// }
-// mostrarProductos(zapatillas)
-
 function mostrarProductos(arrayProductos) {
     let contenedor = document.getElementById("wrapper")
     contenedor.innerHTML = ""
@@ -113,7 +84,7 @@ mostrarProductos(zapatillas)
 let carritoDOM = document.getElementById("carrito")
 
 function finalizarCompra() {
-    alert("Muchas gracias por su compra")
+    compraRealizada()
     localStorage.removeItem("carrito")
     carrito = []
     renderizarCarrito(carrito)
@@ -200,6 +171,22 @@ function alertAgregarAlCarrito() {
 function sinStock() {
     Toastify({
         text: "Zapatilla sin stock",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(90deg, rgba(135,0,176,1) 0%, rgba(0,0,154,1) 79%, rgba(79,99,241,1) 100%)",
+        },
+        onClick: function(){}
+      }).showToast();
+}
+
+function compraRealizada() {
+    Toastify({
+        text: "Muchas gracias por la compra, vuelva pronto!",
         duration: 3000,
         newWindow: true,
         close: true,
