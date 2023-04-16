@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
+*{
+    margin: 0;
+    padding: 0;
+}
+
 /*LISTA DE NAVEGACION*/
 
 .nav__inicial{
@@ -200,13 +205,47 @@
 /* CARRITO */
 
 #carrito {
-    width: 100%;
-    height: 200px;
-    border: 1px solid black;
+    width: 320px;
+    border: 1.3px solid rgb(172, 172, 172);
+    border-radius: 5px;
+    margin: 5px;
 }
 .ocultar {
     display: none;
 }
 .mostrar {
     display: flex;
+}
+.card__en__carrito{
+    border: 1.3px solid rgb(172, 172, 172);
+    border-radius: 5px;
+    margin: 7px;
+    padding: 5px;
+    width: 300px;
+}
+.boton__finalizar__compra{
+    border-radius: 5px;
+    background-color: #fff;
+    outline: none;
+    border: 1.3px solid rgb(172, 172, 172);
+    padding: 5px;
+    margin: 7px;
+}
+.boton__finalizar__compra:hover{
+    background-color: rgb(172, 172, 172);
+    color: #fff;
+    transition: 0.5s;
+}
+.boton__carrito{
+    border-radius: 5px;
+    background-color: #fff;
+    outline: none;
+    border: 1.3px solid rgb(172, 172, 172);
+    padding: 5px;
+    margin: 5px;
+}
+.boton__carrito:hover{
+    background-color: rgb(172, 172, 172);
+    color: #fff;
+    transition: 0.5s;
 }

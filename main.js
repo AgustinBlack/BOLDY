@@ -76,14 +76,14 @@ function filtrar(){
 // }
 // mostrarProductos(zapatillas)
 
-function renderizarProductos(arrayProductos) {
+function mostrarProductos(arrayProductos) {
     let contenedor = document.getElementById("wrapper")
     contenedor.innerHTML = ""
     arrayProductos.forEach(({ modelo, marca, image, precio, stock, id }) => {
-      let tarjetaProducto = document.createElement("div")
-      tarjetaProducto.classList.add('card', 'col-xl-3', 'col-md-6', 'col-sm-12')
+      let card = document.createElement("div")
+      card.classList.add('card', 'col-xl-3', 'col-md-6', 'col-sm-12')
   
-      tarjetaProducto.innerHTML = `
+      card.innerHTML = `
         <div class="card">
             <img src="${image}" class="card-img-top" alt="...">
             <div class="card-body">      
@@ -99,14 +99,14 @@ function renderizarProductos(arrayProductos) {
             </div>
         </div>
       `
-      contenedor.appendChild(tarjetaProducto)
+      contenedor.appendChild(card)
   
       let boton = document.getElementById(id)
-      boton.addEventListener("click", agregarProductoAlCarrito)
+      boton.addEventListener("click", agregarProductoAlCarrito) 
     })
 }
 
-renderizarProductos(zapatillas)
+mostrarProductos(zapatillas)
 
 //CARRITO
 
@@ -124,43 +124,49 @@ renderizarCarrito(carrito)
 
 function agregarProductoAlCarrito(e) {
 
-    let posicionProd = zapatillas.findIndex(producto => producto.id == e.target.id)
-    let productoBuscado = zapatillas.find(producto => producto.id === Number(e.target.id))
+
+    let posicionZapatilla = zapatillas.findIndex(producto => producto.id == e.target.id)
+    let zapatillaBuscada = zapatillas.find(producto => producto.id === Number(e.target.id))
     
-    if (zapatillas[posicionProd].stock > 0) { 
-
+    if (zapatillas[posicionZapatilla].stock > 0) { 
+        alertAgregarAlCarrito()
         let elementoSpan = document.getElementById("span" + e.target.id)
-        zapatillas[posicionProd].stock--
-        elementoSpan.innerHTML = productos[posicionProd].stock    
-      if (carrito.some(({ id }) => id == productoBuscado.id)) {
+        zapatillas[posicionZapatilla].stock--
+        elementoSpan.innerHTML = zapatillas[posicionZapatilla].stock    
+      if (carrito.some(({ id }) => id == zapatillaBuscada.id)) {
 
-            let pos = carrito.findIndex(producto => producto.id == productoBuscado.id)
+            let pos = carrito.findIndex(producto => producto.id == zapatillaBuscada.id)
             carrito[pos].unidades++
             carrito[pos].subtotal = carrito[pos].precio * carrito[pos].unidades
       } else {
 
         carrito.push({
-            id: productoBuscado.id,
-            nombre: productoBuscado.modelo,
-            precio: productoBuscado.precio,
+            id: zapatillaBuscada.id,
+            modelo: zapatillaBuscada.modelo,
+            precio: zapatillaBuscada.precio,
             unidades: 1,
-            subtotal: productoBuscado.precio
+            subtotal: zapatillaBuscada.precio
         })
       }
       localStorage.setItem("carrito", JSON.stringify(carrito))
       renderizarCarrito(carrito)
     } else {
-        alert(`La zapatilla ${productoBuscado.modelo} sin stock`)
+        sinStock()
     }
 }
 
 
-function renderizarCarrito(arrayDeProductos) {
+function renderizarCarrito(arrayDeZapatillas) {
     carritoDOM.innerHTML = ""
-    arrayDeProductos.forEach(({ modelo, precio, unidades, subtotal }) => {
-      carritoDOM.innerHTML += `<h3>${modelo} ${precio} ${unidades} ${subtotal}</h3>`
+    arrayDeZapatillas.forEach(({ modelo, precio, unidades, subtotal }) => {
+        carritoDOM.innerHTML += `
+                                <div class="card__en__carrito">
+                                    <h5>${modelo}</h5> 
+                                    <p>$${precio} Cantidad: ${unidades} Total: $${subtotal}</p>
+                                </div>
+                                `
     })
-    carritoDOM.innerHTML += `<button id=comprar>Finalizar compra</button>`
+    carritoDOM.innerHTML += `<button class="boton__finalizar__compra" id=comprar>Finalizar compra</button>`
   
     let botonComprar = document.getElementById("comprar")
     botonComprar.addEventListener("click", finalizarCompra)
@@ -173,4 +179,36 @@ function mostrarCarrito() {
   let contenedorProductos = document.getElementById("contenedorProductos")
   carritoDOM.classList.toggle("ocultar")
   contenedorProductos.classList.toggle("ocultar")
+}
+
+function alertAgregarAlCarrito() {
+    Toastify({
+        text: "Agregado al carrito",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(90deg, rgba(135,0,176,1) 0%, rgba(0,0,154,1) 79%, rgba(79,99,241,1) 100%)",
+        },
+        onClick: function(){}
+      }).showToast();
+}
+
+function sinStock() {
+    Toastify({
+        text: "Zapatilla sin stock",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(90deg, rgba(135,0,176,1) 0%, rgba(0,0,154,1) 79%, rgba(79,99,241,1) 100%)",
+        },
+        onClick: function(){}
+      }).showToast();
 }
