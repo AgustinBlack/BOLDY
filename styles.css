@@ -37,24 +37,38 @@
 
 /* CARDS DE ZAPATILLAS */
 
-#contenedor__cards {  
+#wrapper {
     display: flex;
-    flex-direction: row;
+    justify-content: space-evenly;
     flex-wrap: wrap;
-    justify-content: space-around;
-    border-top: 2px solid rgb(177, 177, 177);
+    flex-direction: row;
 }
-
 .card{
     width: 250px;
     height: 400px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
     margin-top: 5px;
-    /* border: none; */
+    display: table-cell;
 }
-
-button{
+.card-body{
+    display: flex;
+    flex-direction: column;
+}
+.boton__card{
     border-radius: 5px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    border: 1.3px solid rgb(172, 172, 172);
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    color: rgb(0, 0, 0); 
+}
+.boton__card:hover{
+    background-color: rgb(172, 172, 172);
+    color: #fff;
+    transition: 0.5s;
 }
 
 /* TEXTOS */
@@ -64,22 +78,135 @@ button{
     flex-direction: column;
     margin-bottom: 3rem;
     align-items: center;
+    margin-bottom: 10px;
 }
-
 .texto__primero{
-    text-align: left;
     width: 500px;
     height: 140px;
+    background-color: darkslateblue;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    color: white;
 }
-
 .texto__segundo{
-    text-align: right;
     width: 500px;
     height: 140px;
+    background-color: #0303c6;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    color: white;
+}
+.texto__tercero{
+    width: 500px;
+    height: 140px;
+    background-color: grey;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    color: white;
 }
 
-.texto__tercero{
-    text-align: left;
-    width: 500px;
-    height: 140px;
+/* FORMULARIO DE CONTACTO */
+
+.form__inicial{
+    background: darkslateblue;
+    width: 90%;
+    max-width: 650px;
+    margin: auto;
+    padding: 5px 35px;
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 10px;
+}
+.form__contacto__titulo{
+    font-weight: normal;
+    text-align: center;
+    padding: 14px 0;
+    font-family: 'Poppins', sans-serif;
+}
+.form__contacto__titulo span{
+    color: #fff;
+}
+.form__label{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-size: 1em;
+}
+.form__input{
+    background-color: #bcbcf5;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #fff;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    font-size: 1em;
+    color: rgb(0, 0, 0); 
+}
+.form__mensaje{
+    background-color: #bcbcf5;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #fff;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    font-size: 1em;
+    color: rgb(0, 0, 0);
+    font-family: 'Poppins', sans-serif;
+    resize: vertical;
+    max-height: 150px;
+    min-height: 50px;
+}
+.form__enviar{
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    background: #bcbcf5;
+    font-size: 1em;
+    border: none;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    padding: 15px 0;
+    cursor: pointer;
+}
+.form__enviar:hover{
+    background-color: rgb(139, 69, 243);
+    transition: 0.5s;
+    color: white;
+}
+
+/* PIE DE PAGINA */
+
+.pie__pagina{
+    width: 100%;
+    background-color: rgb(33 37 41);
+    margin-top: 80px;
+}
+.grupo__1{
+    width: 100%;
+    max-width: 1200px;
+}
+.sobre__nosotros{
+    color: white;
+    padding: 30px;
+}
+
+/* CARRITO */
+
+#carrito {
+    width: 100%;
+    height: 200px;
+    border: 1px solid black;
+}
+.ocultar {
+    display: none;
+}
+.mostrar {
+    display: flex;
 }

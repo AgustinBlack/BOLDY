@@ -47,9 +47,9 @@
             </div>
         </nav>
 
-        <section >
+        <div class="div__imagen">
             <img class="imagen__centro" src="./images/BOLDY-74-recortado.png" alt="BOLDY 74">
-        </section>
+        </div>
         <section class="textos">
             <div class="texto__primero">
                 <p>BOLDY 74, es una marca que nacio en el año 2023, recientemente lanzamos los primeros proyectos a la sociedad, con fines de complacer al cliente en cuanto a sus deseos, los cuales le hicieron llegar a esta pagina</p>
@@ -62,10 +62,50 @@
             </div>
         </section>
 
-        <div id="contenedor__cards">
+        <button id="botonCarrito">CARRITO</button>
+      
+        <div class="ocultar" id="carrito"></div>
+        <div class="mostrar" id="contenedorProductos">
+          <div id="wrapper">
+      
+          </div>
+        </div>
+
+        <div class="form">
+            <form action="" class="form__inicial">
+                <div class="form__contacto">
+                    <h1 class="form__contacto__titulo">
+                        <span>CONTACTO</span>
+                    </h1>
+                </div>
+    
+                <label for="Nombres" class="form__label">Nombres</label>
+                <input type="text" id="Nombres" class="form__input" placeholder="Escriba su Nombre">
+    
+                <label for="Apellido" class="form__label">Apellido</label>
+                <input type="text" class="form__input" id="Apellido" placeholder="Escriba su Apellido">
+    
+                <label for="Correo" class="form__label">Correo electronico</label>
+                <input type="text" class="form__input" id="Correo" placeholder="Escriba su correo electronico">
+    
+                <label for="Mensaje" class="form__label">Escriba su mensaje</label>
+                <textarea id="Mensaje" class="form__mensaje" placeholder="Escriba su mensaje"></textarea>
+    
+                <input type="submit" class="form__enviar" value="Enviar consulta">
+            </form>
         </div>
 
     </main>
+    <footer class="pie__pagina">
+        <div class="grupo__1">
+            <div class="box">
+                <div class="sobre__nosotros">
+                    <h2>SOBRE NOSOTROS</h2>
+                    <p>En BOLDY 74 lo que buscamos lograr es ser el mediador entre un cliente que busca determinada zapatilla "exclusiva" y otra persona que la posee, nosotros nos encargamos de buscar, armar y entregar el pedido a nuestros clientes en el mejor de los estados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="./main.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
