@@ -1,0 +1,131 @@
+[
+    {
+      "marca": "Adidas",
+      "modelo": "Adidas All Star",
+      "precio": 16000,
+      "stock": 5,
+      "id": 1,
+      "imagen": "./images/adidas-all-star.jpg"
+    },
+    {
+      "marca": "Adidas",
+      "modelo": "Adidas Forum",
+      "precio": 14000,
+      "stock": 9,
+      "id": 2,
+      "imagen": "./images/Forum-Mid-GW2857.jpg"
+    },
+    {
+      "marca": "Adidas",
+      "modelo": "Adidas Ozelia",
+      "precio": 19000,
+      "stock": 4,
+      "id": 3,
+      "imagen": "./images/adidas-ozelia.jpg"
+    },
+    {
+      "marca": "Adidas",
+      "modelo": "Adidas X9000L4",
+      "precio": 21000,
+      "stock": 2,
+      "id": 4,
+      "imagen": "./images/adidas-x9000l4-blancas.jpg"
+    },
+    {
+      "marca": "Nike",
+      "modelo": "Nike Air Jordan 1",
+      "precio": 17000,
+      "stock": 6,
+      "id": 5,
+      "imagen": "./images/air-jordan-1.jpg"
+    },
+    {
+      "marca": "Nike",
+      "modelo": "Nike Air Max 97",
+      "precio": 19000,
+      "stock": 0,
+      "id": 6,
+      "imagen": "./images/air-max-97.jpg"
+    },
+    {
+      "marca": "Nike",
+      "modelo": "Nike Air Max Bolt",
+      "precio": 21000,
+      "stock": 2,
+      "id": 7,
+      "imagen": "./images/air-max-bolt(1).jpg"
+    },
+    {
+      "marca": "Nike",
+      "modelo": "Nike Air Force 1 High 07",
+      "precio": 25000,
+      "stock": 8,
+      "id": 8,
+      "imagen": "./images/air-max-force-1-hich-07.jpg"
+    },
+    {
+      "marca": "Puma",
+      "modelo": "Puma 19486201",
+      "precio": 13000,
+      "stock": 9,
+      "id": 9,
+      "imagen": "./images/PUMA-19486201.jpg"
+    },
+    {
+      "marca": "Puma",
+      "modelo": "Puma Trc Blaze",
+      "precio": 16000,
+      "stock": 4,
+      "id": 10,
+      "imagen": "./images/puma-trc-blaze.jpg"
+    },
+    {
+      "marca": "Puma",
+      "modelo": "Puma CA Pro Classic",
+      "precio": 18000,
+      "stock": 6,
+      "id": 11,
+      "imagen": "./images/puma-ca-pro-classic.jpg"
+    },
+    {
+      "marca": "Puma",
+      "modelo": "Puma Baquet Classic XXI",
+      "precio": 17000,
+      "stock": 2,
+      "id": 12,
+      "imagen": "./images/puma-basket-classic-xxi.jpg"
+    },
+    {    
+      "marca": "New Balance",    
+      "modelo": "Beige New Balance 550",    
+      "precio": 15000,    
+      "stock": 2,    
+      "id": 13,    
+      "imagen": "./images/Beige-New-Balance-550.jpg"  
+    },  
+    {    
+      "marca": "New Balance",    
+      "modelo": "Beige New Balance 530",     
+      "precio": 19000,    
+      "stock": 7,    
+      "id": 14,    
+      "imagen": "./images/Beige-New-Balance-530.jpg"  
+    },  
+    {    
+      "marca": "New Balance",    
+      "modelo": "Beige New Balance 990 V5",    
+      "precio": 14000,    
+      "stock": 0,    
+      "id": 15,    
+      "imagen": "./images/Beige-New-Balance-990-V5.jpg"  
+    },  
+    {    
+      "marca": "New Balance",   
+      "modelo": "Beige New Balance 373",    
+      "precio": 20000,    
+      "stock": 4,    
+      "id": 16,    
+      "imagen": "./images/Beige-New-Balance-373.jpg"  
+    }
+]
+
