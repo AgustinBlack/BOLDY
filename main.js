@@ -31,7 +31,7 @@ function mostrarProductos(arrayProductos) {
   
       card.innerHTML = `
         <div class="card">
-            <img src="${producto.image}" class="card-img-top" alt="...">
+            <img src="${producto.imagen}" class="card-img-top" alt="...">
             <div class="card-body">      
                 <h5 class="tituloProducto">${producto.modelo}</h5>
                 <p class="card-title">${producto.marca}</p>
@@ -70,7 +70,6 @@ renderizarCarrito(carrito)
 
 function agregarProductoAlCarrito(e) {
 
-
     let posicionZapatilla = zapatillas.findIndex(producto => producto.id == e.target.id)
     let zapatillaBuscada = zapatillas.find(producto => producto.id === Number(e.target.id))
     
@@ -78,14 +77,13 @@ function agregarProductoAlCarrito(e) {
         alertAgregarAlCarrito()
         let elementoSpan = document.getElementById("span" + e.target.id)
         zapatillas[posicionZapatilla].stock--
-        elementoSpan.innerHTML = zapatillas[posicionZapatilla].stock    
+        elementoSpan.innerHTML = zapatillas[posicionZapatilla].stock
+   
       if (carrito.some(({ id }) => id == zapatillaBuscada.id)) {
-
             let pos = carrito.findIndex(producto => producto.id == zapatillaBuscada.id)
             carrito[pos].unidades++
             carrito[pos].subtotal = carrito[pos].precio * carrito[pos].unidades
       } else {
-
         carrito.push({
             id: zapatillaBuscada.id,
             modelo: zapatillaBuscada.modelo,
@@ -98,7 +96,7 @@ function agregarProductoAlCarrito(e) {
       renderizarCarrito(carrito)
     } else {
         sinStock()
-    }
+    } 
 }
 
 
