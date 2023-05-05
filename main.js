@@ -12,12 +12,17 @@ fetch(zapatillas)
 
 //BUSCADOR
 
-let buscador = document.getElementById("buscador")
-buscador.addEventListener("input", filtrar)
+let buscador = document.getElementById("buscador");
+buscador.addEventListener("input", filtrar);
 
 function filtrar(){
-    let zapatillasFiltradas = zapatillas.filter(zapatilla => zapatilla.marca.includes(buscador.value))
-    mostrarProductos(zapatillasFiltradas)
+  fetch("./json/data.json")
+    .then(response => response.json())
+    .then(zapatillas => {
+      let zapatillasFiltradas = zapatillas.filter(zapatilla => zapatilla.marca.includes(buscador.value));
+      mostrarProductos(zapatillasFiltradas);
+    })
+    .catch(error => console.error(error));
 }
 
 //CARDS
