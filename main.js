@@ -2,7 +2,7 @@ const zapatillas = "./json/data.json"
 const contenedorProductos = document.getElementById("contenedorProductos")
 
 fetch(zapatillas)
-  .then((respuesta) => respuesta.json)
+  .then((respuesta) => respuesta.json())
   .then((datos) => {
     console.log(datos);
     mostrarProductos(datos);
@@ -47,7 +47,7 @@ function mostrarProductos(arrayProductos) {
       `
       contenedor.appendChild(card)
   
-      let boton = document.getElementById(id)
+      let boton = document.getElementById(producto.id)
       boton.addEventListener("click", agregarProductoAlCarrito) 
     })
 }
