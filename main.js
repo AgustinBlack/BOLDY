@@ -52,8 +52,6 @@ function mostrarProductos(arrayProductos) {
     })
 }
 
-mostrarProductos(zapatillas)
-
 //CARRITO
 
 let carritoDOM = document.getElementById("carrito")
@@ -68,12 +66,15 @@ function finalizarCompra() {
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 renderizarCarrito(carrito)
 
-function agregarProductoAlCarrito(e) {
+function agregarProductoAlCarrito(e, zapatillas) {
 
-    let posicionZapatilla = zapatillas.findIndex(producto => producto.id == e.target.id)
-    let zapatillaBuscada = zapatillas.find(producto => producto.id === Number(e.target.id))
-    
-    if (zapatillas[posicionZapatilla].stock > 0) { 
+  fetch('./json/data.json')
+  .then(response => response.json())
+  .then(zapatillas => {
+      let posicionZapatilla = zapatillas.findIndex(producto => producto.id == e.target.id)
+      let zapatillaBuscada = zapatillas.find(producto => producto.id === Number(e.target.id))
+
+      if (zapatillas[posicionZapatilla].stock > 0) { 
         alertAgregarAlCarrito()
         let elementoSpan = document.getElementById("span" + e.target.id)
         zapatillas[posicionZapatilla].stock--
@@ -97,16 +98,18 @@ function agregarProductoAlCarrito(e) {
     } else {
         sinStock()
     } 
+  })
+  .catch(error => console.error(error))
 }
 
 
 function renderizarCarrito(arrayDeZapatillas) {
     carritoDOM.innerHTML = ""
-    arrayDeZapatillas.forEach(({ modelo, precio, unidades, subtotal }) => {
+    arrayDeZapatillas.forEach((producto) => {
         carritoDOM.innerHTML += `
                                 <div class="card__en__carrito">
-                                    <h5>${modelo}</h5> 
-                                    <p>$${precio} Cantidad: ${unidades} Total: $${subtotal}</p>
+                                    <h5>${producto.modelo}</h5> 
+                                    <p>$${producto.precio} Cantidad: ${producto.unidades} Total: $${producto.subtotal}</p>
                                 </div>
                                 `
     })
@@ -128,7 +131,7 @@ function mostrarCarrito() {
 function alertAgregarAlCarrito() {
     Toastify({
         text: "Agregado al carrito",
-        duration: 3000,
+        duration: 1500,
         newWindow: true,
         close: true,
         gravity: "top",
@@ -144,7 +147,7 @@ function alertAgregarAlCarrito() {
 function sinStock() {
     Toastify({
         text: "Zapatilla sin stock",
-        duration: 3000,
+        duration: 1500,
         newWindow: true,
         close: true,
         gravity: "top",
@@ -160,7 +163,7 @@ function sinStock() {
 function compraRealizada() {
     Toastify({
         text: "Muchas gracias por la compra, vuelva pronto!",
-        duration: 3000,
+        duration: 1500,
         newWindow: true,
         close: true,
         gravity: "top",
@@ -172,8 +175,3 @@ function compraRealizada() {
         onClick: function(){}
       }).showToast();
 }
-
-// fetch('https://jsonplaceholder.typicode.com/todos')
-//   .then(respuesta => respuesta.json())
-//   .then(info => console.log(info))
-//   .catch(error => console.log("HUBO UN ERRORS"))
