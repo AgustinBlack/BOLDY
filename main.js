@@ -62,10 +62,15 @@ function mostrarProductos(arrayProductos) {
 let carritoDOM = document.getElementById("carrito")
 
 function finalizarCompra() {
-    compraRealizada()
-    localStorage.removeItem("carrito")
-    carrito = []
-    renderizarCarrito(carrito)
+  if (carrito.length === 0) {
+    carritoVacio();
+    return;
+  }
+  
+  compraRealizada();
+  localStorage.removeItem("carrito");
+  carrito = [];
+  renderizarCarrito(carrito);
 }
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
@@ -109,19 +114,30 @@ function agregarProductoAlCarrito(e, zapatillas) {
 
 
 function renderizarCarrito(arrayDeZapatillas) {
-    carritoDOM.innerHTML = ""
+    carritoDOM.innerHTML = "";
+    let totalCompra = 0; 
     arrayDeZapatillas.forEach((producto) => {
         carritoDOM.innerHTML += `
-                                <div class="card__en__carrito">
-                                    <h5>${producto.modelo}</h5> 
-                                    <p>$${producto.precio} Cantidad: ${producto.unidades} Total: $${producto.subtotal}</p>
-                                </div>
-                                `
+            <div class="card__en__carrito">
+                <h5>${producto.modelo}</h5> 
+                <p>$${producto.precio} Cantidad: ${producto.unidades} Total: $${producto.subtotal}</p>
+            </div>
+            `
+            totalCompra += producto.subtotal;
     })
-    carritoDOM.innerHTML += `<button class="boton__finalizar__compra" id=comprar>Finalizar compra</button>`
+
+    carritoDOM.innerHTML += `<div class="precioTotal">Total de la compra: $${totalCompra}</div>`;
+    carritoDOM.innerHTML += `<button class="boton__finalizar__compra" id=comprar>Finalizar compra</button> <button class="boton__vaciar__carrito" id=vaciar>Vaciar carrito</button>`
+
+    document.getElementById("vaciar").addEventListener("click", vaciarCarrito);
   
     let botonComprar = document.getElementById("comprar")
     botonComprar.addEventListener("click", finalizarCompra)
+}
+
+function vaciarCarrito() {
+  carrito = []
+  renderizarCarrito(carrito)
 }
 
 let botonCarrito = document.getElementById("botonCarrito")
@@ -180,3 +196,26 @@ function compraRealizada() {
         onClick: function(){}
       }).showToast();
 }
+
+function carritoVacio() {
+  Toastify({
+      text: "No hay productos para comprar",
+      duration: 1500,
+      newWindow: true,
+      close: true,
+      gravity: "top",
+      position: "right",
+      stopOnFocus: true,
+      style: {
+        background: "linear-gradient(90deg, rgba(135,0,176,1) 0%, rgba(0,0,154,1) 79%, rgba(79,99,241,1) 100%)",
+      },
+      onClick: function(){}
+    }).showToast();
+}
+
+//FORMULARIO
+
+const boton = document.querySelector('.form__enviar');
+boton.addEventListener('click', function(event) {
+  event.preventDefault();
+});

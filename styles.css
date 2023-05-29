@@ -11,9 +11,11 @@
     list-style: none;
     flex-direction: row;
 }
+
 .nav__inicial li{
     padding-top: 10px;
 }
+
 .nav__inicial li a{
     text-decoration: none;
     color: white;
@@ -21,6 +23,7 @@
     border-radius: 3px;
     font-size: unset;
 }
+
 .nav__inicial li :hover{
     transition: 0.5s;
     color: black;
@@ -48,6 +51,7 @@
     flex-wrap: wrap;
     flex-direction: row;
 }
+
 .card{
     width: 250px;
     height: 400px;
@@ -55,10 +59,12 @@
     margin-top: 5px;
     display: table-cell;
 }
+
 .card-body{
     display: flex;
     flex-direction: column;
 }
+
 .boton__card{
     border-radius: 5px;
     background-color: #fff;
@@ -70,6 +76,7 @@
     font-size: 1em;
     color: rgb(0, 0, 0); 
 }
+
 .boton__card:hover{
     background-color: rgb(172, 172, 172);
     color: #fff;
@@ -85,6 +92,7 @@
     align-items: center;
     margin-bottom: 10px;
 }
+
 .texto__primero{
     width: 500px;
     height: 140px;
@@ -94,6 +102,7 @@
     margin-bottom: 15px;
     color: white;
 }
+
 .texto__segundo{
     width: 500px;
     height: 140px;
@@ -103,6 +112,7 @@
     margin-bottom: 15px;
     color: white;
 }
+
 .texto__tercero{
     width: 500px;
     height: 140px;
@@ -125,21 +135,25 @@
     padding-bottom: 30px;
     border-radius: 10px;
 }
+
 .form__contacto__titulo{
     font-weight: normal;
     text-align: center;
     padding: 14px 0;
     font-family: 'Poppins', sans-serif;
 }
+
 .form__contacto__titulo span{
     color: #fff;
 }
+
 .form__label{
     display: flex;
     flex-direction: column;
     color: #fff;
     font-size: 1em;
 }
+
 .form__input{
     background-color: #bcbcf5;
     border: none;
@@ -152,6 +166,7 @@
     font-size: 1em;
     color: rgb(0, 0, 0); 
 }
+
 .form__mensaje{
     background-color: #bcbcf5;
     border: none;
@@ -168,6 +183,7 @@
     max-height: 150px;
     min-height: 50px;
 }
+
 .form__enviar{
     width: 100%;
     font-family: 'Poppins', sans-serif;
@@ -180,6 +196,7 @@
     padding: 15px 0;
     cursor: pointer;
 }
+
 .form__enviar:hover{
     background-color: rgb(139, 69, 243);
     transition: 0.5s;
@@ -193,10 +210,12 @@
     background-color: rgb(33 37 41);
     margin-top: 80px;
 }
+
 .grupo__1{
     width: 100%;
     max-width: 1200px;
 }
+
 .sobre__nosotros{
     color: white;
     padding: 30px;
@@ -209,20 +228,26 @@
     border: 1.3px solid rgb(172, 172, 172);
     border-radius: 5px;
     margin: 5px;
+    background-color: black;
 }
+
 .ocultar {
     display: none;
 }
+
 .mostrar {
     display: flex;
 }
+
 .card__en__carrito{
     border: 1.3px solid rgb(172, 172, 172);
     border-radius: 5px;
     margin: 7px;
     padding: 5px;
     width: 300px;
+    background-color: #fff;
 }
+
 .boton__finalizar__compra{
     border-radius: 5px;
     background-color: #fff;
@@ -231,11 +256,14 @@
     padding: 5px;
     margin: 7px;
 }
+
 .boton__finalizar__compra:hover{
-    background-color: rgb(172, 172, 172);
+    background-color: black;
     color: #fff;
     transition: 0.5s;
+    border-color: #fff;
 }
+
 .boton__carrito{
     border-radius: 5px;
     background-color: #fff;
@@ -244,8 +272,30 @@
     padding: 5px;
     margin: 5px;
 }
+
 .boton__carrito:hover{
     background-color: rgb(172, 172, 172);
     color: #fff;
     transition: 0.5s;
+}
+
+.boton__vaciar__carrito{
+    border-radius: 5px;
+    background-color: #fff;
+    outline: none;
+    border: 1.3px solid rgb(172, 172, 172);
+    padding: 5px;
+    margin: 7px;
+}
+
+.boton__vaciar__carrito:hover{
+    background-color: black;
+    color: #fff;
+    transition: 0.5s;
+    border-color: #fff;
+}
+
+.precioTotal{
+    padding-left: 10px;
+    color: #fff;
 }
