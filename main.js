@@ -19,7 +19,7 @@ function filtrar(){
   fetch("./json/data.json")
     .then(response => response.json())
     .then(zapatillas => {
-      let zapatillasFiltradas = zapatillas.filter(zapatilla => zapatilla.marca.includes(buscador.value));
+      let zapatillasFiltradas = zapatillas.filter(zapatilla => zapatilla.marca.toLowerCase().includes(buscador.value));
       mostrarProductos(zapatillasFiltradas);
     })
     .catch(error => console.error(error));
