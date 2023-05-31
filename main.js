@@ -5,25 +5,32 @@ fetch(zapatillas)
   .then((respuesta) => respuesta.json())
   .then((datos) => {
     console.log(datos);
-    mostrarProductos(datos);
+    filtrar(datos);
+    filtrarPorPrecioMayorMenor(datos);
   })
   .catch((error) => console.log("Hubo un error"));
 
 
 //BUSCADOR
 
-let buscador = document.getElementById("buscador");
-buscador.addEventListener("input", filtrar);
-
-function filtrar(){
-  fetch("./json/data.json")
-    .then(response => response.json())
-    .then(zapatillas => {
-      let zapatillasFiltradas = zapatillas.filter(zapatilla => zapatilla.marca.toLowerCase().includes(buscador.value));
-      mostrarProductos(zapatillasFiltradas);
-    })
-    .catch(error => console.error(error));
+function filtrar(arrayZapatillas){
+  let buscador = document.getElementById("buscador");
+  buscador.addEventListener("input", ()=>{
+    let zapatillasFiltradas = arrayZapatillas.filter(zapatilla => zapatilla.marca.toLowerCase().includes(buscador.value));
+    return mostrarProductos(zapatillasFiltradas)
+  });
+  mostrarProductos(arrayZapatillas)
 }
+
+//FILTRAR POR PRECIO
+
+let filtrarPrecios = document.getElementsByClassName(".filtrarPorPrecio")
+filtrarPrecios.addEventListener("click", ()=>{
+    let zapatillasOrdenadas = zapatillas.sort(function(a, b){return b - a});
+    mostrarProductos(zapatillasOrdenadas);
+})
+mostrarProductos(array)
+
 
 //CARDS
 
