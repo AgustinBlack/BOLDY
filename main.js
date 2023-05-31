@@ -6,7 +6,6 @@ fetch(zapatillas)
   .then((datos) => {
     console.log(datos);
     filtrar(datos);
-    filtrarPorPrecioMayorMenor(datos);
   })
   .catch((error) => console.log("Hubo un error"));
 
@@ -21,16 +20,6 @@ function filtrar(arrayZapatillas){
   });
   mostrarProductos(arrayZapatillas)
 }
-
-//FILTRAR POR PRECIO
-
-let filtrarPrecios = document.getElementsByClassName(".filtrarPorPrecio")
-filtrarPrecios.addEventListener("click", ()=>{
-    let zapatillasOrdenadas = zapatillas.sort(function(a, b){return b - a});
-    mostrarProductos(zapatillasOrdenadas);
-})
-mostrarProductos(array)
-
 
 //CARDS
 
