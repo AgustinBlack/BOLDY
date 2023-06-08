@@ -7,7 +7,6 @@ fetch(zapatillas)
     console.log(datos);
     filtrar(datos);
   })
-  .catch((error) => console.log("Hubo un error"));
 
 
 //BUSCADOR
@@ -39,7 +38,7 @@ function mostrarProductos(arrayProductos) {
             </div>
             <ul class="list-group list-group-flush">
                 <p class="list-group-item">Precio: $${producto.precio}</p>
-                <p class="list-group-item">Quedan <span id=span${producto.id}>${producto.stock}</span> unidades</p>
+                <p class="list-group-item"><span id=span${producto.id}>${producto.stock}</span></p>
             </ul>
             <div class="card-body">
                 <button class="boton__card" id=${producto.id}>Agregar al carrito</button>
@@ -72,41 +71,36 @@ function finalizarCompra() {
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 renderizarCarrito(carrito)
 
-function agregarProductoAlCarrito(e, zapatillas) {
-
-  fetch('./json/data.json')
-  .then(response => response.json())
-  .then(zapatillas => {
-      let posicionZapatilla = zapatillas.findIndex(producto => producto.id == e.target.id)
+function agregarProductoAlCarrito(e, zapatilla) {
+      let posicionZapatilla = zapatillas.indexOf(producto => producto.id == e.target.id)
       let zapatillaBuscada = zapatillas.find(producto => producto.id === Number(e.target.id))
 
-      if (zapatillas[posicionZapatilla].stock > 0) { 
+      if (zapatillas[posicionZapatilla].stock === "STOCK") { 
         alertAgregarAlCarrito()
         let elementoSpan = document.getElementById("span" + e.target.id)
-        zapatillas[posicionZapatilla].stock--
-        elementoSpan.innerHTML = zapatillas[posicionZapatilla].stock
-   
-      if (carrito.some(({ id }) => id == zapatillaBuscada.id)) {
-            let pos = carrito.findIndex(producto => producto.id == zapatillaBuscada.id)
-            carrito[pos].unidades++
-            carrito[pos].subtotal = carrito[pos].precio * carrito[pos].unidades
-      } else {
-        carrito.push({
-            id: zapatillaBuscada.id,
-            modelo: zapatillaBuscada.modelo,
-            precio: zapatillaBuscada.precio,
-            unidades: 1,
-            subtotal: zapatillaBuscada.precio
-        })
-      }
-      localStorage.setItem("carrito", JSON.stringify(carrito))
-      renderizarCarrito(carrito)
+      zapatillas[posicionZapatilla].stock--
+      elementoSpan.innerHTML = zapatillas[posicionZapatilla].stock
+  
+    if (carrito.some(({ id }) => id == zapatillaBuscada.id)) {
+          let pos = carrito.findIndex(producto => producto.id == zapatillaBuscada.id)
+          carrito[pos].unidades++
+          carrito[pos].subtotal = carrito[pos].precio * carrito[pos].unidades
+    } else {
+      carrito.push({
+          id: zapatillaBuscada.id,
+          modelo: zapatillaBuscada.modelo,
+          precio: zapatillaBuscada.precio,
+          unidades: 1,
+          subtotal: zapatillaBuscada.precio
+      })
+    }
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+    renderizarCarrito(carrito)
     } else {
         sinStock()
     } 
-  })
-  .catch(error => console.error(error))
-}
+  }
+
 
 
 function renderizarCarrito(arrayDeZapatillas) {
@@ -117,6 +111,7 @@ function renderizarCarrito(arrayDeZapatillas) {
             <div class="card__en__carrito">
                 <h5>${producto.modelo}</h5> 
                 <p>$${producto.precio} Cantidad: ${producto.unidades} Total: $${producto.subtotal}</p>
+                <button id="boton__eliminar">Eliminar del carrito</button>
             </div>
             `
             totalCompra += producto.subtotal;
@@ -214,4 +209,4 @@ function carritoVacio() {
 const boton = document.querySelector('.form__enviar');
 boton.addEventListener('click', function(event) {
   event.preventDefault();
-});
+})
