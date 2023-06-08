@@ -48,7 +48,9 @@ function mostrarProductos(arrayProductos) {
       contenedor.appendChild(card)
   
       let boton = document.getElementById(producto.id)
-      boton.addEventListener("click", agregarProductoAlCarrito) 
+      boton.addEventListener("click", () => {
+        agregarProductoAlCarrito(producto)
+        }) 
     })
 }
 
@@ -71,7 +73,7 @@ function finalizarCompra() {
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 renderizarCarrito(carrito)
 
-function agregarProductoAlCarrito(e, zapatilla) {
+function agregarProductoAlCarrito(producto) {
       let posicionZapatilla = zapatillas.indexOf(producto => producto.id == e.target.id)
       let zapatillaBuscada = zapatillas.find(producto => producto.id === Number(e.target.id))
 
