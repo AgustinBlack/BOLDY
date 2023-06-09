@@ -22,15 +22,21 @@ function filtrar(arrayZapatillas){
 
 //CARDS
 
-function filtrarPorMenorPrecio(zapatillas) {
-  const zapatillasOrdenadas = zapatillas.slice().sort((a, b) => a.precio - b.precio);
-  mostrarProductos(zapatillasOrdenadas);
-}
+// let precioMenor = document.querySelectorAll(".precio__menor")
+// precioMenor.addEventListener("click", filtrarPorMayorPrecio)
 
-function filtrarPorMayorPrecio(zapatillas) {
-  const zapatillasOrdenadas = zapatillas.slice().sort((a, b) => b.precio - a.precio);
-  mostrarProductos(zapatillasOrdenadas);
-}
+// function filtrarPorMenorPrecio(producto) {
+//   const zapatillasOrdenadas = zapatillas.slice().sort((mayor, menor) => menor.precio - mayor.precio);
+//   mostrarProductos(zapatillasOrdenadas);
+// }
+
+// let precioMayor = document.querySelectorAll(".precio__mayor")
+// precioMayor.addEventListener("click", filtrarPorMayorPrecio)
+
+// function filtrarPorMayorPrecio(producto) {
+//   const zapatillasOrdenadas = zapatillas.slice().sort((mayor, menor) => mayor.precio - menor.precio);
+//   mostrarProductos(zapatillasOrdenadas);
+// }
 
 
 function mostrarProductos(arrayProductos) {
@@ -83,7 +89,6 @@ function finalizarCompra() {
 }
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
-// renderizarCarrito(carrito)
 
 function agregarProductoAlCarrito(producto) {
 	if (carrito.some(({ id }) => id == producto.id || id === "STOCK")) {
@@ -96,6 +101,7 @@ function agregarProductoAlCarrito(producto) {
 			...producto,
 			unidades: 1,
 		});
+    alertAgregarAlCarrito();
 	}
 	localStorage.setItem("carrito", JSON.stringify(carrito));
 	renderizarCarrito(carrito);
