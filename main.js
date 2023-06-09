@@ -95,14 +95,22 @@ function renderizarCarrito(arrayDeZapatillas) {
     carritoDOM.innerHTML = "";
     let totalCompra = 0; 
     arrayDeZapatillas.forEach((producto) => {
-        carritoDOM.innerHTML += `
-            <div class="card__en__carrito">
-                <h5>${producto.modelo}</h5> 
-                <p>$${producto.precio} Cantidad: ${producto.unidades} Total: $${producto.subtotal}</p>
-                <button id="eliminar-${producto.id}">Eliminar</button>
-            </div>
-            `
-            totalCompra += producto.subtotal;
+      let cardCarrito = document.createElement("div")
+      cardCarrito.innerHTML += `
+          <div class="card__en__carrito">
+              <h5>${producto.modelo}</h5> 
+              <p>$${producto.precio} Cantidad: ${producto.unidades} Total: $${producto.subtotal}</p>
+              <button id="eliminar-${producto.id}">Eliminar</button>
+          </div>
+          `
+          totalCompra += producto.subtotal;
+
+          carritoDOM.appendChild(cardCarrito)
+
+          const botonEliminar = document.getElementById(`eliminar-${producto.id}` );
+          botonEliminar.addEventListener("click", () => { 
+            eliminarProducto(producto.id);
+          });
     })
 
     carritoDOM.innerHTML += `<div class="precioTotal">Total de la compra: $${totalCompra}</div>`;
@@ -113,18 +121,13 @@ function renderizarCarrito(arrayDeZapatillas) {
     let botonComprar = document.getElementById("comprar")
     botonComprar.addEventListener("click", finalizarCompra)
 
-    // const botonEliminar = document.getElementById(`eliminar-${producto.id}` );
-    // botonEliminar.addEventListener("click", () => { 
-    //   eliminarProducto(producto.id);
-    // });
-
 }
 
-// const eliminarProducto = (id) => {
-// 	carrito = carrito.filter((producto) => producto.id !== id);
-// 	localStorage.setItem("carrito", JSON.stringify(carrito));
-// 	mostrarCarrito();
-// };
+const eliminarProducto = (id) => {
+	carrito = carrito.filter((producto) => producto.id !== id);
+	localStorage.setItem("carrito", JSON.stringify(carrito));
+	mostrarCarrito();
+};
 
 function vaciarCarrito() {
   carrito = []
