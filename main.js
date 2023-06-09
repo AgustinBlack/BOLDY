@@ -50,7 +50,8 @@ function mostrarProductos(arrayProductos) {
       let boton = document.getElementById(producto.id)
       boton.addEventListener("click", () => {
         agregarProductoAlCarrito(producto)
-        }) 
+      }) 
+      
     })
 }
 
@@ -74,34 +75,19 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 renderizarCarrito(carrito)
 
 function agregarProductoAlCarrito(producto) {
-      let posicionZapatilla = zapatillas.indexOf(producto => producto.id == e.target.id)
-      let zapatillaBuscada = zapatillas.find(producto => producto.id === Number(e.target.id))
-
-      if (zapatillas[posicionZapatilla].stock === "STOCK") { 
-        alertAgregarAlCarrito()
-        let elementoSpan = document.getElementById("span" + e.target.id)
-      zapatillas[posicionZapatilla].stock--
-      elementoSpan.innerHTML = zapatillas[posicionZapatilla].stock
-  
-    if (carrito.some(({ id }) => id == zapatillaBuscada.id)) {
-          let pos = carrito.findIndex(producto => producto.id == zapatillaBuscada.id)
-          carrito[pos].unidades++
-          carrito[pos].subtotal = carrito[pos].precio * carrito[pos].unidades
-    } else {
-      carrito.push({
-          id: zapatillaBuscada.id,
-          modelo: zapatillaBuscada.modelo,
-          precio: zapatillaBuscada.precio,
-          unidades: 1,
-          subtotal: zapatillaBuscada.precio
-      })
-    }
-    localStorage.setItem("carrito", JSON.stringify(carrito))
-    renderizarCarrito(carrito)
-    } else {
-        sinStock()
-    } 
-  }
+	if (carrito.some(({ id }) => id == producto.id)) {
+		let pos = carrito.findIndex((prod) => prod.id == producto.id);
+		carrito[pos].unidades++;
+		carrito[pos].subtotal = carrito[pos].precio * carrito[pos].unidades;
+	} else {
+		carrito.push({
+			...producto,
+			unidades: 1,
+		});
+	}
+	localStorage.setItem("carrito", JSON.stringify(carrito));
+	renderizarCarrito(carrito);
+}
 
 
 
@@ -113,7 +99,7 @@ function renderizarCarrito(arrayDeZapatillas) {
             <div class="card__en__carrito">
                 <h5>${producto.modelo}</h5> 
                 <p>$${producto.precio} Cantidad: ${producto.unidades} Total: $${producto.subtotal}</p>
-                <button id="boton__eliminar">Eliminar del carrito</button>
+                <button id="eliminar-${producto.id}">Eliminar</button>
             </div>
             `
             totalCompra += producto.subtotal;
@@ -126,7 +112,19 @@ function renderizarCarrito(arrayDeZapatillas) {
   
     let botonComprar = document.getElementById("comprar")
     botonComprar.addEventListener("click", finalizarCompra)
+
+    const botonEliminar = document.getElementById(`eliminar-${producto.id}`);
+    botonEliminar.addEventListener("click", () => {
+      eliminarProducto(producto.id);
+    });
+
 }
+
+const eliminarProducto = (id) => {
+	carrito = carrito.filter((producto) => producto.id !== id);
+	localStorage.setItem("carrito", JSON.stringify(carrito));
+	mostrarCarrito();
+};
 
 function vaciarCarrito() {
   carrito = []
