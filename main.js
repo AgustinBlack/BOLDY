@@ -89,45 +89,50 @@ function agregarProductoAlCarrito(producto) {
 	renderizarCarrito(carrito);
 }
 
+const eliminarProducto = (e) => {
+  console.log(parseInt(e.target.id))
+	carrito = carrito.filter((producto) => producto.id !== parseInt(e.target.id));
+	localStorage.setItem("carrito", JSON.stringify(carrito));
+	mostrarCarrito();
+  renderizarCarrito()
+};
 
-
-function renderizarCarrito(arrayDeZapatillas) {
+function renderizarCarrito() {
     carritoDOM.innerHTML = "";
     let totalCompra = 0; 
-    arrayDeZapatillas.forEach((producto) => {
+    console.log(carrito)
+    carrito.forEach((producto) => {
+      console.log(producto)
       let cardCarrito = document.createElement("div")
       cardCarrito.innerHTML += `
           <div class="card__en__carrito">
               <h5>${producto.modelo}</h5> 
-              <p>$${producto.precio} Cantidad: ${producto.unidades} Total: $${producto.subtotal}</p>
-              <button id="eliminar-${producto.id}">Eliminar</button>
+              <p>$${producto.precio} Cantidad: ${producto.unidades} Total: $${producto.precio * producto.unidades}</p>
+              <button class="boton-eliminar" id="${producto.id}">Eliminar</button>
           </div>
           `
           totalCompra += producto.subtotal;
 
           carritoDOM.appendChild(cardCarrito)
-
-          const botonEliminar = document.getElementById(`eliminar-${producto.id}` );
-          botonEliminar.addEventListener("click", () => { 
-            eliminarProducto(producto.id);
-          });
     })
 
-    carritoDOM.innerHTML += `<div class="precioTotal">Total de la compra: $${totalCompra}</div>`;
-    carritoDOM.innerHTML += `<button class="boton__finalizar__compra" id=comprar>Finalizar compra</button> <button class="boton__vaciar__carrito" id=vaciar>Vaciar carrito</button>`
+    const botonEliminar = document.querySelectorAll(`.boton-eliminar`);
+    console.log(botonEliminar)
+    botonEliminar.forEach((btn) =>  
+        btn.addEventListener("click", eliminarProducto)
+    );
 
-    document.getElementById("vaciar").addEventListener("click", vaciarCarrito);
+    // carritoDOM.innerHTML += `<div class="precioTotal">Total de la compra: $${totalCompra}</div>`;
+    // carritoDOM.innerHTML += `<button class="boton__finalizar__compra" id=comprar>Finalizar compra</button> <button class="boton__vaciar__carrito" id=vaciar>Vaciar carrito</button>`
+
+    // document.getElementById("vaciar").addEventListener("click", vaciarCarrito);
   
-    let botonComprar = document.getElementById("comprar")
-    botonComprar.addEventListener("click", finalizarCompra)
+    // let botonComprar = document.getElementById("comprar")
+    // botonComprar.addEventListener("click", finalizarCompra)
 
 }
 
-const eliminarProducto = (id) => {
-	carrito = carrito.filter((producto) => producto.id !== id);
-	localStorage.setItem("carrito", JSON.stringify(carrito));
-	mostrarCarrito();
-};
+
 
 function vaciarCarrito() {
   carrito = []
