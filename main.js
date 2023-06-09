@@ -22,21 +22,21 @@ function filtrar(arrayZapatillas){
 
 //CARDS
 
-// let precioMenor = document.querySelectorAll(".precio__menor")
-// precioMenor.addEventListener("click", filtrarPorMayorPrecio)
+let precioMenor = document.querySelector(".precio__menor")
+precioMenor.addEventListener("click", filtrarPorMenorPrecio)
 
-// function filtrarPorMenorPrecio(producto) {
-//   const zapatillasOrdenadas = zapatillas.slice().sort((mayor, menor) => menor.precio - mayor.precio);
-//   mostrarProductos(zapatillasOrdenadas);
-// }
+function filtrarPorMenorPrecio(producto) {
+  const zapatillasMenorPrecio = zapatillas.slice().sort((mayor, menor) => menor.precio - mayor.precio);
+  mostrarProductos(zapatillasMenorPrecio);
+}
 
-// let precioMayor = document.querySelectorAll(".precio__mayor")
-// precioMayor.addEventListener("click", filtrarPorMayorPrecio)
+let precioMayor = document.querySelector(".precio__mayor")
+precioMayor.addEventListener("click", filtrarPorMayorPrecio)
 
-// function filtrarPorMayorPrecio(producto) {
-//   const zapatillasOrdenadas = zapatillas.slice().sort((mayor, menor) => mayor.precio - menor.precio);
-//   mostrarProductos(zapatillasOrdenadas);
-// }
+function filtrarPorMayorPrecio(producto) {
+  const zapatillasMayorPrecio = zapatillas.slice().sort((mayor, menor) => mayor.precio - menor.precio);
+  mostrarProductos(zapatillasMayorPrecio);
+}
 
 
 function mostrarProductos(arrayProductos) {
