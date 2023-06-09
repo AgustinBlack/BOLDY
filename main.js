@@ -22,6 +22,17 @@ function filtrar(arrayZapatillas){
 
 //CARDS
 
+function filtrarPorMenorPrecio(zapatillas) {
+  const zapatillasOrdenadas = zapatillas.slice().sort((a, b) => a.precio - b.precio);
+  mostrarProductos(zapatillasOrdenadas);
+}
+
+function filtrarPorMayorPrecio(zapatillas) {
+  const zapatillasOrdenadas = zapatillas.slice().sort((a, b) => b.precio - a.precio);
+  mostrarProductos(zapatillasOrdenadas);
+}
+
+
 function mostrarProductos(arrayProductos) {
     let contenedor = document.getElementById("wrapper")
     contenedor.innerHTML = ""
@@ -75,11 +86,12 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 // renderizarCarrito(carrito)
 
 function agregarProductoAlCarrito(producto) {
-	if (carrito.some(({ id }) => id == producto.id)) {
+	if (carrito.some(({ id }) => id == producto.id || id === "STOCK")) {
 		let pos = carrito.findIndex((prod) => prod.id == producto.id);
 		carrito[pos].unidades++;
 		carrito[pos].subtotal = carrito[pos].precio * carrito[pos].unidades;
-	} else {
+    alertAgregarAlCarrito();
+  } else {
 		carrito.push({
 			...producto,
 			unidades: 1,
@@ -90,7 +102,6 @@ function agregarProductoAlCarrito(producto) {
 }
 
 const eliminarProducto = (e) => {
-  console.log(parseInt(e.target.id))
 	carrito = carrito.filter((producto) => producto.id !== parseInt(e.target.id));
 	localStorage.setItem("carrito", JSON.stringify(carrito));
 	mostrarCarrito();
@@ -100,9 +111,7 @@ const eliminarProducto = (e) => {
 function renderizarCarrito() {
     carritoDOM.innerHTML = "";
     let totalCompra = 0; 
-    console.log(carrito)
     carrito.forEach((producto) => {
-      console.log(producto)
       let cardCarrito = document.createElement("div")
       cardCarrito.innerHTML += `
           <div class="card_en_carrito">
@@ -117,7 +126,6 @@ function renderizarCarrito() {
     })
 
     const botonEliminar = document.querySelectorAll(`.boton-eliminar`);
-    console.log(botonEliminar)
     botonEliminar.forEach((btn) =>  
         btn.addEventListener("click", eliminarProducto)
     );
@@ -146,6 +154,9 @@ function mostrarCarrito() {
   carritoDOM.classList.toggle("ocultar")
   contenedorProductos.classList.toggle("ocultar")
 }
+
+
+
 
 function alertAgregarAlCarrito() {
     Toastify({

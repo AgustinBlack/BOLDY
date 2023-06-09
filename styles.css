@@ -63,6 +63,7 @@
 .card-body{
     display: flex;
     flex-direction: column;
+    color: black;
 }
 
 .boton__card{
@@ -228,7 +229,6 @@
     border: 1.3px solid rgb(172, 172, 172);
     border-radius: 5px;
     margin: 5px;
-    background-color: black;
 }
 
 .ocultar {
@@ -237,6 +237,7 @@
 
 .mostrar {
     display: flex;
+    color: white;
 }
 
 .card__en__carrito{
@@ -297,5 +298,5 @@
 
 .precioTotal{
     padding-left: 10px;
-    color: #fff;
+    color: black;
 }
