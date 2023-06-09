@@ -113,18 +113,18 @@ function renderizarCarrito(arrayDeZapatillas) {
     let botonComprar = document.getElementById("comprar")
     botonComprar.addEventListener("click", finalizarCompra)
 
-    const botonEliminar = document.getElementById(`eliminar-${producto.id}`);
-    botonEliminar.addEventListener("click", () => {
-      eliminarProducto(producto.id);
-    });
+    // const botonEliminar = document.getElementById(`eliminar-${producto.id}` );
+    // botonEliminar.addEventListener("click", () => { 
+    //   eliminarProducto(producto.id);
+    // });
 
 }
 
-const eliminarProducto = (id) => {
-	carrito = carrito.filter((producto) => producto.id !== id);
-	localStorage.setItem("carrito", JSON.stringify(carrito));
-	mostrarCarrito();
-};
+// const eliminarProducto = (id) => {
+// 	carrito = carrito.filter((producto) => producto.id !== id);
+// 	localStorage.setItem("carrito", JSON.stringify(carrito));
+// 	mostrarCarrito();
+// };
 
 function vaciarCarrito() {
   carrito = []
