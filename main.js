@@ -72,7 +72,7 @@ function finalizarCompra() {
 }
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
-renderizarCarrito(carrito)
+// renderizarCarrito(carrito)
 
 function agregarProductoAlCarrito(producto) {
 	if (carrito.some(({ id }) => id == producto.id)) {
