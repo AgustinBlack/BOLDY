@@ -240,7 +240,7 @@
     color: white;
 }
 
-.card__en__carrito{
+.card_en_carrito{
     border: 1.3px solid rgb(172, 172, 172);
     border-radius: 5px;
     margin: 7px;
@@ -299,4 +299,55 @@
 .precioTotal{
     padding-left: 10px;
     color: black;
+}
+
+.boton-eliminar{
+    background-color: white;
+    border: 1.3px solid rgb(172, 172, 172);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.boton-eliminar:hover{
+    background-color: rgb(50, 48, 48);
+    color: white;
+    transition: 0.5s;
+    border: 1.3px solid black;
+}
+
+.precio__mayor{
+    border: 1.3px solid rgb(172, 172, 172);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #fff;
+}
+
+.precio__mayor:hover{
+    background-color: rgb(50, 48, 48);
+    color: white;
+    transition: 0.5s;
+    border: 1.3px solid black;
+}
+
+.precio__menor{
+    border: 1.3px solid rgb(172, 172, 172);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #fff;
+}
+
+.precio__menor:hover{
+    background-color: rgb(50, 48, 48);
+    color: white;
+    transition: 0.5s;
+    border: 1.3px solid black;
+}
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

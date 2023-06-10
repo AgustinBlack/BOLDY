@@ -25,15 +25,15 @@ function filtrar(arrayZapatillas){
 let precioMenor = document.querySelector(".precio__menor")
 precioMenor.addEventListener("click", filtrarPorMenorPrecio)
 
-function filtrarPorMenorPrecio(arrayNuevo) {
-  const zapatillasOrdenadas = arrayNuevo.filter(zap => zap.precio>=13000);
+function filtrarPorMenorPrecio() {
+  const zapatillasOrdenadas = arrayNuevo.sort((menor, mayor) => menor.precio - mayor.precio);
   mostrarProductos(zapatillasOrdenadas);
 }
 
 let precioMayor = document.querySelector(".precio__mayor")
 precioMayor.addEventListener("click", filtrarPorMayorPrecio)
 
-function filtrarPorMayorPrecio(arrayNuevo) {
+function filtrarPorMayorPrecio() {
   const zapatillasOrdenadas = arrayNuevo.sort((mayor, menor) => menor.precio - mayor.precio);
   mostrarProductos(zapatillasOrdenadas);
 }
@@ -91,6 +91,10 @@ function finalizarCompra() {
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 
 function agregarProductoAlCarrito(producto) {
+  if (producto.stock === "SIN STOCK") {
+    sinStock();
+    return;
+  }
 	if (carrito.some(({ id }) => id == producto.id || id === "STOCK")) {
 		let pos = carrito.findIndex((prod) => prod.id == producto.id);
 		carrito[pos].unidades++;
@@ -111,7 +115,7 @@ const eliminarProducto = (e) => {
 	carrito = carrito.filter((producto) => producto.id !== parseInt(e.target.id));
 	localStorage.setItem("carrito", JSON.stringify(carrito));
 	mostrarCarrito();
-  renderizarCarrito()
+  renderizarCarrito();
 };
 
 function renderizarCarrito() {
@@ -126,24 +130,24 @@ function renderizarCarrito() {
               <button class="boton-eliminar" id="${producto.id}">Eliminar</button>
           </div>
           `
-          totalCompra += producto.subtotal;
+      totalCompra += producto.subtotal;
 
-          carritoDOM.appendChild(cardCarrito)
+      carritoDOM.appendChild(cardCarrito)
+
     })
 
     const botonEliminar = document.querySelectorAll(`.boton-eliminar`);
     botonEliminar.forEach((btn) =>  
-        btn.addEventListener("click", eliminarProducto)
+      btn.addEventListener("click", eliminarProducto)
     );
 
-    // carritoDOM.innerHTML += `<div class="precioTotal">Total de la compra: $${totalCompra}</div>`;
-    // carritoDOM.innerHTML += `<button class="boton_finalizarcompra" id=comprar>Finalizar compra</button> <button class="botonvaciar_carrito" id=vaciar>Vaciar carrito</button>`
+    // carritoDOM.innerHTML += `<div class="precioTotal">Total de la compra: $${totalCompra}</div>
+    //  <button class="boton__finalizar__compra" id="comprar">Finalizar compra</button> <button class="boton__vaciar__carrito" id="vaciar">Vaciar carrito</button>`
 
-    // document.getElementById("vaciar").addEventListener("click", vaciarCarrito);
+    document.getElementById("vaciar").addEventListener("click", vaciarCarrito);
   
-    // let botonComprar = document.getElementById("comprar")
-    // botonComprar.addEventListener("click", finalizarCompra)
-
+    let botonComprar = document.getElementById("comprar")
+    botonComprar.addEventListener("click", finalizarCompra)
 }
 
 
