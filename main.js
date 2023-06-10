@@ -6,8 +6,8 @@ fetch(zapatillas)
   .then((datos) => {
     console.log(datos);
     filtrar(datos);
+    arrayNuevo = datos
   })
-
 
 //BUSCADOR
 
@@ -25,17 +25,17 @@ function filtrar(arrayZapatillas){
 let precioMenor = document.querySelector(".precio__menor")
 precioMenor.addEventListener("click", filtrarPorMenorPrecio)
 
-function filtrarPorMenorPrecio(producto) {
-  const zapatillasMenorPrecio = zapatillas.slice().sort((mayor, menor) => menor.precio - mayor.precio);
-  mostrarProductos(zapatillasMenorPrecio);
+function filtrarPorMenorPrecio(arrayNuevo) {
+  const zapatillasOrdenadas = arrayNuevo.filter(zap => zap.precio>=13000);
+  mostrarProductos(zapatillasOrdenadas);
 }
 
 let precioMayor = document.querySelector(".precio__mayor")
 precioMayor.addEventListener("click", filtrarPorMayorPrecio)
 
-function filtrarPorMayorPrecio(producto) {
-  const zapatillasMayorPrecio = zapatillas.slice().sort((mayor, menor) => mayor.precio - menor.precio);
-  mostrarProductos(zapatillasMayorPrecio);
+function filtrarPorMayorPrecio(arrayNuevo) {
+  const zapatillasOrdenadas = arrayNuevo.sort((mayor, menor) => menor.precio - mayor.precio);
+  mostrarProductos(zapatillasOrdenadas);
 }
 
 
@@ -160,9 +160,6 @@ function mostrarCarrito() {
   carritoDOM.classList.toggle("ocultar")
   contenedorProductos.classList.toggle("ocultar")
 }
-
-
-
 
 function alertAgregarAlCarrito() {
     Toastify({
